@@ -1,21 +1,23 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-    <link rel="stylesheet" href="/src/styles.css" />
-    <link rel="stylesheet" href="/src/css/galery-styles.css">
-  </head>
-  <body>
-    <div id="app"></div>
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search for images..." required>
-      <button type="submit">Search</button>
-      <div class="gallery"></div>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="/src/styles.css" />
+  <link rel="stylesheet" href="/src/css/galery-styles.css">
+</head>
+<body>
+  <div id="app"></div>
+  <form id="search-form">
+    <input type="text" id="search-input" placeholder="Search for images..." required>
+    <button type="submit">Search</button>
+  </form>
+  <button class="load-more" style="display: none;">Load more</button>
 
-    </form>
-    <script type="module" src="/src/main.js"></script>
-  </body>
+  <div class="gallery"></div>
+  <button class="load-more" style="display: none;">Load more</button>
+  <script type="module" src="/src/main.js"></script>
+</body>
 </html>
