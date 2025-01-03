@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://piotrczechowski.github.io/goit-advancedjs-hw-03/",
+  "homepage": "https://piotrczechowski.github.io/goit-advancedjs-hw-04/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
