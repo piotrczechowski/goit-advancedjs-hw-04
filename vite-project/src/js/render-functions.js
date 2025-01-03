@@ -1,3 +1,4 @@
+
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -35,6 +36,7 @@ export function displayImages(images, gallery, lightbox) {
       </a>
     `)
     .join('');
-  gallery.insertAdjacentHTML('beforeend', markup);
-  lightbox.refresh();
+  
+  gallery.insertAdjacentHTML('beforeend', markup); // Dodajemy nowe elementy, a nie zastępujemy istniejące
+  lightbox.refresh(); // Aktualizacja SimpleLightbox
 }

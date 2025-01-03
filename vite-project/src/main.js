@@ -1,3 +1,4 @@
+// main.js
 import { fetchImages } from './js/pixabay-api.js';
 import { showLoader, hideLoader, showError, clearGallery, displayImages } from './js/render-functions.js';
 import SimpleLightbox from 'simplelightbox';
@@ -52,11 +53,10 @@ loadMoreBtn.addEventListener('click', async () => {
     const { images } = await fetchImages(query, page, perPage);
     hideLoader(loader);
     displayImages(images, gallery, lightbox);
+    smoothScroll(); // Wywołanie po dodaniu nowych obrazów
     if (page * perPage >= totalHits) {
       loadMoreBtn.style.display = 'none';
       showError("You've reached the end of the results.");
-    } else {
-      smoothScroll();
     }
   } catch {
     hideLoader(loader);
@@ -64,7 +64,11 @@ loadMoreBtn.addEventListener('click', async () => {
   }
 });
 
+
 function smoothScroll() {
-  const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
-  window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+  const scrollPosition = document.documentElement.scrollHeight; // Pobiera pełną wysokość dokumentu
+  window.scrollTo({
+    top: scrollPosition,
+    behavior: 'smooth',
+  });
 }

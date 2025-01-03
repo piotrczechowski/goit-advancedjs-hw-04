@@ -28,6 +28,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-y: scroll;
+}
+body::after {
+  content: '';
+  display: block;
+  height: 100px; /* Adjust this value */
 }
 
 h1 {
@@ -93,4 +99,22 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+
+.load-more {
+  margin: 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+}
+
+.load-more:hover {
+  background-color: #0056b3;
 }
