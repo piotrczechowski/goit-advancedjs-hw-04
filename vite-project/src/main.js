@@ -1,24 +1,34 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+// Import necessary libraries
+import { fetchImages } from './js/pixabay-api.js';
+import { showLoader, hideLoader, showError, clearGallery, displayImages } from './js/render-functions.js';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+// Select DOM elements
+const form = document.querySelector('#search-form');
+const input = document.querySelector('#search-input');
+const gallery = document.querySelector('.gallery');
 
-setupCounter(document.querySelector('#counter'))
+let lightbox = new SimpleLightbox('.gallery a');
+
+// Form submission handler
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const query = input.value.trim();
+
+  if (!query) {
+    showError('Please enter a search query.');
+    return;
+  }
+
+  fetchImages(query).then(images => {
+    if (images.length === 0) {
+      showError('Sorry, there are no images matching your search query. Please try again!');
+      return;
+    }
+    clearGallery();
+    displayImages(images, gallery, lightbox);
+  }).catch(() => {
+    showError('Failed to fetch images. Please try again later.');
+  });
+});
