@@ -53,7 +53,9 @@ loadMoreBtn.addEventListener('click', async () => {
     const { images } = await fetchImages(query, page, perPage);
     hideLoader(loader);
     displayImages(images, gallery, lightbox);
-    smoothScroll(); // Wywołanie po dodaniu nowych obrazów
+    setTimeout(() => {
+      smoothScroll(); // Wywołanie po dodaniu nowych obrazów
+    }, 200); // Delay to ensure images are rendered before scrolling
     if (page * perPage >= totalHits) {
       loadMoreBtn.style.display = 'none';
       showError("You've reached the end of the results.");
@@ -64,11 +66,9 @@ loadMoreBtn.addEventListener('click', async () => {
   }
 });
 
-
 function smoothScroll() {
-  const scrollPosition = document.documentElement.scrollHeight; // Pobiera pełną wysokość dokumentu
   window.scrollTo({
-    top: scrollPosition,
+    top: document.documentElement.scrollHeight,
     behavior: 'smooth',
   });
 }
